@@ -1,0 +1,28 @@
+<div class="flex">
+  <div class="row">
+    <div class="col-6">
+      <table class="table">
+        <thead class="table-head">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Línea</th>
+            <th scope="col">Modelo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of cars">
+            <th scope="row">{{ car.id }}</th>
+            <td>{{ car.marca }}</td>
+            <td>{{ car.linea }}</td>
+            <td>{{ car.modelo }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="fluid" *ngFor="let message of getAmountOfCarsPerBrand()">
+  <p class="mb-0">{{ message }}</p>
+</div>
