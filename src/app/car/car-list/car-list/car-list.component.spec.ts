@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { Car } from 'src/app/models/car-models/car';
 
+import { CarService } from 'src/app/services/car-services/car.service';
+
 describe('CarListComponent', () => {
   let component: CarListComponent;
   let fixture: ComponentFixture<CarListComponent>;
@@ -17,7 +19,8 @@ describe('CarListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      declarations: [ CarListComponent ]
+      declarations: [ CarListComponent ],
+      providers: [CarService]
     })
     .compileComponents();
   }));
@@ -26,7 +29,7 @@ describe('CarListComponent', () => {
     fixture = TestBed.createComponent(CarListComponent);
     component = fixture.componentInstance;
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
 
       component.cars.push(
         new Car(
@@ -46,11 +49,11 @@ describe('CarListComponent', () => {
     debug = fixture.debugElement;
   });
 
-  it('table should have 4 columns', () => {
-    expect(debug.queryAll(By.css('th'))).toHaveSize(4)
+  it('table should have 4 columns in the table head', () => {
+    expect(debug.queryAll(By.css('th.t-h'))).toHaveSize(4)
   });
 
-  it('table should have 3 rows', () => {
-    expect(debug.queryAll(By.css('tr'))).toHaveSize(3)
+  it('table should have 1 row of table-head and 3 rows of table-body', () => {
+    expect(debug.queryAll(By.css('tr'))).toHaveSize(4)
   });
 });
